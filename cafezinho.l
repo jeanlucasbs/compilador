@@ -9,8 +9,8 @@ CARACTERE_INVALIDO   .
 ESPACO_BRANCO        [ ]+
 
 %{
-   int linha = 0;
-   #include "cafezinho.tab.h" 
+int linha = 0;
+#include "cafezinho.tab.h" 
 %}
 
 %option yylineno
@@ -21,7 +21,7 @@ ESPACO_BRANCO        [ ]+
 "/*" { linha=yylineno; BEGIN(COMMENT); }
 <COMMENT>"*/" { BEGIN(INITIAL); }
 <COMMENT>(.|\n);
-<COMMENT><<EOF>> {printf("(%d,ERRO: COMENTÁRIO NÂO TERMINA,\"/*\")\n",linha); return (0);}
+<COMMENT><<EOF>> {printf("(ERRO: COMENTÁRIO NÂO TERMINA NA LINHA %d,\"/*\")\n",linha); return (0);}
 
 "programa"  { return(programa); }
 "car"       { return(car); }

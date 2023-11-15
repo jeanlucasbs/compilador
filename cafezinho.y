@@ -7,6 +7,7 @@ extern int yylex();
 extern FILE *yyin;
 void yyerror(char const *);
 extern int yylineno;
+extern char *yytext;
 %}
 
 %token DIGITO 
@@ -195,19 +196,19 @@ ListExpr : AssignExpr
 %% 
 
 void yyerror(char const* msg){
-   printf("%s -- Linha %d\n",msg, yylineno); 
+    fprintf(stderr, "ERRO: Linha %d \n", yylineno, msg, yytext);
 }
 
 
 int main(int argc, char**argv){
      if(argc!=2){
-          printf("Uso correto: sintatico <nome> \n");
+          printf("Uso correto: cafezinho arquivo_de_teste\n");
           exit(1);
      }
      yyin=fopen(argv[1],"rt");
      if(yyin)
           return yyparse();
      else 
-          yyerror("arquivo nao encontrado");
+          yyerror("arquivo não encontrado.");
      return(1);
 }
