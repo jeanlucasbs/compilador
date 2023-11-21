@@ -31,4 +31,3 @@ tgz:
 	rm -f *.o rm cafezinho *.tgz 
 	tar -zcvf cafezinho.tgz *
 	echo "O arquivo cafezinho.tgz com os fontes e Makefile foi gerado. Pode ser enviado."	
-
